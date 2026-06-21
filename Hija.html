@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>🎂 ¡Feliz Cumpleaños! - 4 Años</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Comic Sans MS', 'Segoe UI', cursive, sans-serif;
+      background: linear-gradient(180deg, #FFE4E1 0%, #FFB6C1 30%, #DDA0DD 70%, #87CEEB 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      color: #FFD700;
+      font-size: 1.5rem;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.2; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .balloon {
+      position: fixed;
+      font-size: 2.5rem;
+      animation: floatBalloon 8s infinite ease-in-out;
+      pointer-events: none;
+      z-index: 1;
+      user-select: none;
+    }
+
+    @keyframes floatBalloon {
+      0%, 100% { transform: translateY(0) rotate(-5deg); }
+      50% { transform: translateY(-60px) rotate(5deg); }
+    }
+
+    .confetti-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+    }
+
+    .confetti-piece {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 2px;
+      animation: confettiFall linear forwards;
+    }
+
+    @keyframes confettiFall {
+      0% { transform: translateY(-20px) rotate(0deg) scale(1); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg) scale(0.5); opacity: 0; }
+    }
+
+    .card {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 40px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), inset 0 2px 0 rgba(255, 255, 255, 0.8);
+      border: 3px solid rgba(255, 215, 0, 0.3);
+      text-align: center;
+      animation: cardAppear 0.8s ease;
+    }
+
+    @keyframes cardAppear {
+      0% { transform: scale(0.5) rotate(-5deg); opacity: 0; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+
+    .crown {
+      font-size: 3.5rem;
+      display: block;
+      margin-bottom: -0.3rem;
+      animation: crownSpin 4s infinite linear;
+    }
+
+    @keyframes crownSpin {
+      0% { transform: rotate(-10deg) scale(1); }
+      25% { transform: rotate(5deg) scale(1.1); }
+      50% { transform: rotate(-5deg) scale(1); }
+      75% { transform: rotate(10deg) scale(1.05); }
+      100% { transform: rotate(-10deg) scale(1); }
+    }
+
+    .title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF, #FF6BFF);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientMove 3s ease infinite;
+      margin: 0.2rem 0;
+      line-height: 1.2;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    .subtitle {
+      font-size: 1.3rem;
+      color: #FF6B6B;
+      font-weight: 700;
+      margin: 0.2rem 0;
+    }
+
+    .subtitle strong {
+      color: #E84393;
+    }
+
+    .age-number {
+      font-size: 4.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #FF6B6B, #FF9F43);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: inline-block;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    .message-box {
+      background: linear-gradient(135deg, #FFF3E0, #FFE0B2);
+      border-radius: 25px;
+      padding: 1.2rem;
+      margin: 1rem 0;
+      border: 3px dashed #FF9F43;
+      position: relative;
+    }
+
+    .message-box .quote {
+      font-size: 1rem;
+      color: #5D4037;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .message-box .hearts {
+      font-size: 1.3rem;
+      margin-top: 0.5rem;
+      animation: heartBeat 1.5s infinite;
+    }
+
+    @keyframes heartBeat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .characters {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      font-size: 2.5rem;
+      margin: 0.6rem 0;
+      flex-wrap: wrap;
+    }
+
+    .characters span {
+      animation: bounceChar 2s infinite ease-in-out;
+      display: inline-block;
+      cursor: default;
+      transition: transform 0.3s;
+    }
+
+    .characters span:hover {
+      transform: scale(1.3) rotate(-10deg);
+    }
+
+    .characters span:nth-child(2) { animation-delay: 0.3s; }
+    .characters span:nth-child(3) { animation-delay: 0.6s; }
+    .characters span:nth-child(4) { animation-delay: 0.9s; }
+    .characters span:nth-child(5) { animation-delay: 1.2s; }
+
+    @keyframes bounceChar {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .photo-frame {
+      border: 4px solid #FFD93D;
+      border-radius: 25px;
+      padding: 0.6rem;
+      margin: 1rem 0;
+      background: rgba(255, 255, 255, 0.6);
+      position: relative;
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.2);
+      transition: all 0.3s;
+    }
+
+    .photo-frame:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 35px rgba(255, 215, 0, 0.35);
+    }
+
+    .photo-frame img {
+      width: 100%;
+      border-radius: 18px;
+      display: block;
+      max-height: 300px;
+      object-fit: cover;
+      border: 2px solid rgba(255, 215, 0, 0.2);
+    }
+
+    .photo-frame .photo-label {
+      position: absolute;
+      bottom: -10px;
+      right: 15px;
+      background: linear-gradient(135deg, #FF6B6B, #FF4757);
+      color: white;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+      letter-spacing: 1px;
+    }
+
+    .btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+      margin: 0.8rem 0 0.3rem;
+    }
+
+    .btn-group.single {
+      grid-template-columns: 1fr;
+    }
+
+    .btn {
+      padding: 0.8rem 0.6rem;
+      border: none;
+      border-radius: 50px;
+      font-family: inherit;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      touch-action: manipulation;
+      min-height: 55px;
+      word-break: break-word;
+      text-align: center;
+      line-height: 1.2;
+    }
+
+    .btn:active {
+      transform: scale(0.92);
+    }
+
+    .btn-rosa {
+      background: linear-gradient(135deg, #FD79A8, #E84393);
+      color: white;
+    }
+
+    .btn-rosa:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 67, 147, 0.4);
+    }
+
+    .btn-amarillo {
+      background: linear-gradient(135deg, #FFD93D, #F9CA24);
+      color: #5D4037;
+    }
+
+    .btn-amarillo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 202, 36, 0.4);
+    }
+
+    .btn-azul {
+      background: linear-gradient(135deg, #74B9FF, #0984E3);
+      color: white;
+    }
+
+    .btn-azul:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(9, 132, 227, 0.4);
+    }
+
+    .btn-verde {
+      background: linear-gradient(135deg, #55EFC4, #00B894);
+      color: white;
+    }
+
+    .btn-verde:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+    }
+
+    .btn-naranja {
+      background: linear-gradient(135deg, #FDCB6E, #E17055);
+      color: white;
+    }
+
+    .btn-naranja:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(225, 112, 85, 0.4);
+    }
+
+    .btn-morado {
+      background: linear-gradient(135deg, #A29BFE, #6C5CE7);
+      color: white;
+    }
+
+    .btn-morado:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+    }
+
+    .btn-rojo {
+      background: linear-gradient(135deg, #FF6B6B, #FF4757);
+      color: white;
+    }
+
+    .btn-rojo:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+    }
+
+    .btn-celebrar {
+      background: linear-gradient(135deg, #FF6B6B, #FF4757);
+      color: white;
+      grid-column: 1 / -1;
+    }
+
+    .btn-celebrar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 71, 87, 0.4);
+    }
+
+    .interactive-balloon {
+      font-size: 3.5rem;
+      display: inline-block;
+      cursor: pointer;
+      transition: transform 0.3s;
+      margin: 0.2rem 0;
+      animation: float 3s infinite ease-in-out;
+      touch-action: manipulation;
+    }
+
+    .interactive-balloon:hover {
+      transform: scale(1.2) rotate(-10deg);
+    }
+
+    .interactive-balloon:active {
+      transform: scale(0.8);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .blow-counter {
+      font-size: 0.9rem;
+      color: #5D4037;
+      background: rgba(255, 255, 255, 0.6);
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      display: inline-block;
+      margin: 0.3rem 0;
+      font-weight: 600;
+    }
+
+    #specialMessage {
+      margin-top: 0.8rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #FF6B6B;
+      min-height: 55px;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    #specialMessage .speaker-icon {
+      font-size: 1.3rem;
+      animation: pulse 1s infinite;
+    }
+
+    .footer {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 2px dashed rgba(0, 0, 0, 0.06);
+      font-size: 0.8rem;
+      color: #6B7280;
+    }
+
+    .footer strong {
+      color: #FF6B6B;
+      font-weight: 700;
+    }
+
+    .footer .hearts-small {
+      font-size: 1rem;
+      animation: heartBeat 1.5s infinite;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.2rem 1rem;
+        border-radius: 30px;
+      }
+      .title {
+        font-size: 1.8rem;
+      }
+      .subtitle {
+        font-size: 1.1rem;
+      }
+      .age-number {
+        font-size: 3.8rem;
+      }
+      .crown {
+        font-size: 3rem;
+      }
+      .message-box .quote {
+        font-size: 0.9rem;
+      }
+      .characters {
+        font-size: 2rem;
+        gap: 0.8rem;
+      }
+      .btn {
+        font-size: 0.8rem;
+        padding: 0.6rem 0.4rem;
+        min-height: 50px;
+      }
+      .interactive-balloon {
+        font-size: 3rem;
+      }
+      .photo-frame img {
+        max-height: 200px;
+      }
+      .photo-frame .photo-label {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.7rem;
+        bottom: -8px;
+        right: 10px;
+      }
+      #specialMessage {
+        font-size: 0.95rem;
+        min-height: 45px;
+      }
+      .balloon {
+        font-size: 2rem;
+      }
+      .footer {
+        font-size: 0.7rem;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .card {
+        padding: 0.8rem;
+      }
+      .title {
+        font-size: 1.5rem;
+      }
+      .age-number {
+        font-size: 3rem;
+      }
+      .subtitle {
+        font-size: 0.95rem;
+      }
+      .photo-frame img {
+        max-height: 150px;
+      }
+      .btn {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.3rem;
+        min-height: 45px;
+      }
+      .message-box .quote {
+        font-size: 0.8rem;
+      }
+      #specialMessage {
+        font-size: 0.85rem;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .title {
+        font-size: 1.3rem;
+      }
+      .characters {
+        font-size: 1.6rem;
+        gap: 0.5rem;
+      }
+      .btn {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.2rem;
+        min-height: 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ESTRELLAS -->
+<div class="stars" id="starsContainer"></div>
+
+<!-- GLOBOS -->
+<div class="balloon" style="left: 3%; top: 8%; animation-delay: 0s;">🎈</div>
+<div class="balloon" style="right: 3%; top: 12%; animation-delay: 2s;">🎈</div>
+<div class="balloon" style="left: 10%; bottom: 15%; animation-delay: 4s;">🎈</div>
+<div class="balloon" style="right: 10%; bottom: 20%; animation-delay: 1s;">🎈</div>
+<div class="balloon" style="left: 48%; top: 3%; animation-delay: 3s;">🎈</div>
+
+<!-- CONFETI -->
+<div class="confetti-container" id="confettiContainer"></div>
+
+<!-- TARJETA PRINCIPAL -->
+<div class="card" id="mainCard">
+  <span class="crown">👑</span>
+  <h1 class="title">🎉 ¡FELIZ CUMPLEAÑOS! 🎉</h1>
+  <div class="subtitle">Para mi <strong>Princesa</strong> y <strong>Reina</strong></div>
+  <div>
+    <span class="age-number">4</span>
+    <span style="font-size: 1.8rem; color: #FF6B6B; font-weight: 700;"> años</span>
+  </div>
+
+  <div class="characters">
+    <span>🦄</span><span>🦋</span><span>🌈</span><span>⭐</span><span>🌸</span>
+  </div>
+
+  <div class="photo-frame">
+    <img src="hija.jpeg" alt="Mi princesa" id="princessPhoto">
+    <span class="photo-label">⭐ Mi Princesa ⭐</span>
+  </div>
+
+  <div class="message-box">
+    <div class="quote">
+      "Hoy celebramos <strong>4 años</strong> de tu llegada al mundo.<br>
+      Eres la luz más brillante de mi vida, mi niña hermosa.<br>
+      Cada día contigo es un regalo del cielo. 🌟"
+    </div>
+    <div class="hearts">💖💗💝💖💗💝</div>
+  </div>
+
+  <div style="margin: 0.3rem 0;">
+    <span class="interactive-balloon" id="balloonPop" title="¡Toca el globo!">🎈</span>
+    <div class="blow-counter" id="blowCount">💨 ¡Sopla el globo! (Toca)</div>
+  </div>
+
+  <!-- BOTONES DE FRASES -->
+  <div class="btn-group">
+    <button class="btn btn-rosa" data-phrase="Eres la reina hermosa de papá">👑 Reina Hermosa</button>
+    <button class="btn btn-amarillo" data-phrase="Eres el amor de papá">💛 Amor de Papá</button>
+    <button class="btn btn-azul" data-phrase="Eres la princesa más bella del mundo">👸 Princesa Bella</button>
+    <button class="btn btn-verde" data-phrase="Eres mi razón de ser, mi niña hermosa">💚 Razón de Ser</button>
+  </div>
+  <div class="btn-group">
+    <button class="btn btn-naranja" data-phrase="Eres la luz de mis ojos, mi tesoro más grande">⭐ Luz de Mis Ojos</button>
+    <button class="btn btn-morado" data-phrase="Eres mi orgullo, mi alegría, mi vida entera">💜 Mi Orgullo</button>
+    <button class="btn btn-rojo" data-phrase="Te amo con todo mi corazón, eres mi princesa">❤️ Te Amo</button>
+    <button class="btn btn-amarillo" data-phrase="Eres mi niña hermosa, mi reina, mi todo">🌟 Mi Todo</button>
+  </div>
+  <div class="btn-group single">
+    <button class="btn btn-celebrar" id="confettiBtn">🎊 ¡FELIZ CUMPLEAÑOS! 🎊</button>
+  </div>
+
+  <div id="specialMessage">
+    <span>🎂 ¡Feliz cumpleaños, mi princesa!</span>
+    <span class="speaker-icon">🔊</span>
+  </div>
+
+  <div class="footer">
+    Con todo mi amor para ti, mi <strong>princesa</strong> de <strong>4 años</strong> 🌷<br>
+    <span class="hearts-small">💕✨💕</span><br>
+    <span style="font-size: 0.7rem; color: #9CA3AF;">✨ Hoy también es mi cumpleaños, y tú eres mi mejor regalo ✨</span>
+  </div>
+</div>
+
+<script>
+  // ============================================================
+  //  CELEBRACIÓN DE CUMPLEAÑOS - PRINCESA DE 4 AÑOS
+  //  FRASES PARA LA HIJA CON VOZ
+  // ============================================================
+
+  // ===== SÍNTESIS DE VOZ =====
+  function speak(text, rate = 0.9, pitch = 1.2) {
+    if (window.speechSynthesis.speaking) window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'es-ES';
+    utterance.rate = rate;
+    utterance.pitch = pitch;
+    utterance.volume = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const spanishVoice = voices.find(v => v.lang.startsWith('es') && v.name.includes('Female'));
+    if (spanishVoice) utterance.voice = spanishVoice;
+    window.speechSynthesis.speak(utterance);
+    return utterance;
+  }
+
+  // ===== ESTRELLAS =====
+  function createStars() {
+    const container = document.getElementById('starsContainer');
+    const emojis = ['⭐', '✨', '🌟', '💫'];
+    for (let i = 0; i < 25; i++) {
+      const star = document.createElement('span');
+      star.className = 'star';
+      star.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.fontSize = (0.8 + Math.random() * 1.5) + 'rem';
+      star.style.animationDelay = (Math.random() * 3) + 's';
+      star.style.animationDuration = (1.5 + Math.random() * 2) + 's';
+      container.appendChild(star);
+    }
+  }
+  createStars();
+
+  // ===== CONFETI =====
+  function createConfetti(count = 40) {
+    const container = document.getElementById('confettiContainer');
+    const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BFF', '#FF9F43', '#FF4757', '#2ED573', '#FD79A8', '#E84393'];
+    for (let i = 0; i < count; i++) {
+      const piece = document.createElement('div');
+      piece.className = 'confetti-piece';
+      const size = 6 + Math.random() * 14;
+      piece.style.width = size + 'px';
+      piece.style.height = size + 'px';
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.left = Math.random() * 100 + '%';
+      piece.style.top = '-20px';
+      piece.style.animationDuration = 2 + Math.random() * 4 + 's';
+      piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+      piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+      piece.style.boxShadow = '0 2px 8px rgba(0,0,0,0.1)';
+      container.appendChild(piece);
+      setTimeout(() => piece.remove(), 6000);
+    }
+  }
+  setTimeout(() => createConfetti(30), 500);
+
+  // ===== BOTONES DE FRASES =====
+  document.querySelectorAll('[data-phrase]').forEach(button => {
+    button.addEventListener('click', function() {
+      const phrase = this.getAttribute('data-phrase');
+      speak(phrase, 0.85, 1.3);
+
+      document.getElementById('specialMessage').innerHTML = `
+        <span>💖 ${phrase} 💖</span>
+        <span class="speaker-icon">💖</span>
+      `;
+      document.getElementById('specialMessage').style.color = '#E84393';
+
+      // Efecto visual
+      this.style.transform = 'scale(0.95)';
+      setTimeout(() => { this.style.transform = ''; }, 300);
+
+      // Confeti pequeño
+      createConfetti(15);
+
+      setTimeout(() => {
+        document.getElementById('specialMessage').innerHTML = `
+          <span>🎂 ¡Feliz cumpleaños, mi princesa!</span>
+          <span class="speaker-icon">🔊</span>
+        `;
+        document.getElementById('specialMessage').style.color = '#FF6B6B';
+      }, 5000);
+    });
+  });
+
+  // ===== BOTÓN CELEBRAR =====
+  document.getElementById('confettiBtn').addEventListener('click', function() {
+    createConfetti(100);
+    speak('¡Feliz cumpleaños, mi princesa! Eres la reina hermosa de papá, el amor de papá, la princesa más bella del mundo. Te amo con todo mi corazón.', 0.9, 1.3);
+
+    document.getElementById('specialMessage').innerHTML = `
+      <span>🎉 ¡FELIZ CUMPLEAÑOS, PRINCESA! 🎉</span>
+      <span class="speaker-icon">🎊</span>
+    `;
+    document.getElementById('specialMessage').style.color = '#FFD93D';
+
+    this.textContent = '🎉 ¡CELEBRANDO! 🎉';
+    setTimeout(() => {
+      this.textContent = '🎊 ¡FELIZ CUMPLEAÑOS! 🎊';
+    }, 2000);
+
+    setTimeout(() => {
+      document.getElementById('specialMessage').innerHTML = `
+        <span>🎂 ¡Feliz cumpleaños, mi princesa!</span>
+        <span class="speaker-icon">🔊</span>
+      `;
+      document.getElementById('specialMessage').style.color = '#FF6B6B';
+    }, 5000);
+  });
+
+  // ===== GLOBO INTERACTIVO =====
+  let blowCount = 0;
+  const balloon = document.getElementById('balloonPop');
+  const blowDisplay = document.getElementById('blowCount');
+
+  balloon.addEventListener('click', function() {
+    blowCount++;
+    if (blowCount < 10) {
+      this.textContent = '🎈';
+      blowDisplay.textContent = `💨 ¡Sopla! (${10 - blowCount} soplos)`;
+      this.style.transform = `scale(${1 + blowCount * 0.05})`;
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.type = 'sine';
+        oscillator.frequency.value = 300 + blowCount * 20;
+        gainNode.gain.value = 0.05;
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.1);
+      } catch (e) {}
+    } else {
+      this.textContent = '🎉';
+      this.style.transform = 'scale(1.6)';
+      blowDisplay.textContent = '🎊 ¡EL GLOBO REVENTÓ! 🎊';
+      speak('¡El globo reventó! ¡Feliz cumpleaños, mi princesa! Eres la reina hermosa de papá', 0.9, 1.3);
+      createConfetti(60);
+      document.getElementById('specialMessage').innerHTML = `
+        <span>🎉 ¡FELIZ CUMPLEAÑOS, PRINCESA! 🎉</span>
+        <span class="speaker-icon">🎊</span>
+      `;
+      document.getElementById('specialMessage').style.color = '#FF6B6B';
+      setTimeout(() => {
+        blowCount = 0;
+        balloon.textContent = '🎈';
+        balloon.style.transform = 'scale(1)';
+        blowDisplay.textContent = '💨 ¡Toca el globo para soplar!';
+        document.getElementById('specialMessage').innerHTML = `
+          <span>🎂 ¡Feliz cumpleaños, mi princesa!</span>
+          <span class="speaker-icon">🔊</span>
+        `;
+        document.getElementById('specialMessage').style.color = '#FF6B6B';
+      }, 4500);
+    }
+  });
+
+  // ===== MENSAJE DE BIENVENIDA =====
+  setTimeout(() => {
+    const msg = document.getElementById('specialMessage');
+    msg.innerHTML = `
+      <span>🎂 ¡Feliz cumpleaños, mi princesa hermosa! 🌷</span>
+      <span class="speaker-icon">🔊</span>
+    `;
+    msg.style.color = '#FF6B6B';
+    setTimeout(() => {
+      speak('Feliz cumpleaños, mi princesa hermosa. Hoy cumples 4 años. Eres la reina hermosa de papá, el amor de papá, mi princesa más bella. Te quiero muchísimo.', 0.85, 1.3);
+    }, 500);
+  }, 1500);
+
+  // ===== GLOBOS INTERACTIVOS =====
+  document.querySelectorAll('.balloon').forEach((b) => {
+    b.addEventListener('click', function() {
+      const colors = ['#FF6B6B', '#FFD93D', '#6BCB77', '#4D96FF', '#FF6BFF', '#FD79A8'];
+      this.style.color = colors[Math.floor(Math.random() * colors.length)];
+      this.style.transform = 'scale(1.3)';
+      setTimeout(() => { this.style.transform = ''; }, 500);
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        oscillator.type = 'sine';
+        oscillator.frequency.value = 800 + Math.random() * 400;
+        gainNode.gain.value = 0.06;
+        oscillator.start();
+        oscillator.stop(audioCtx.currentTime + 0.08);
+      } catch (e) {}
+    });
+  });
+
+  // ===== CARGA DE VOCES =====
+  if (window.speechSynthesis) {
+    window.speechSynthesis.getVoices();
+    window.speechSynthesis.onvoiceschanged = () => {
+      window.speechSynthesis.getVoices();
+    };
+  }
+
+  console.log('🎂 ¡Feliz cumpleaños, mi princesa! 🎂');
+  console.log('✨ Hoy también es mi cumpleaños, ¡qué bonito celebrar juntos! ✨');
+</script>
+</body>
+</html>
